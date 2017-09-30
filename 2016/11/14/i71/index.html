@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>i71面试总结 | 撑起头顶的天</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1.Activity跳转生命周期1.1 OtherActivity完全覆盖MainActivity可以发现在第二个activity的OnResume之后，第一个activity才OnStop,但是在第二个activity的Oncreate之前就执行了OnPause。也就是说只有在第二个activity完全起来之后才调用第一个activity的OnStop  1.2 PauseActivity不完全">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="i71面试总结">
+<meta property="og:url" content="http://yoursite.com/2016/11/14/i71/index.html">
+<meta property="og:site_name" content="撑起头顶的天">
+<meta property="og:description" content="1.Activity跳转生命周期1.1 OtherActivity完全覆盖MainActivity可以发现在第二个activity的OnResume之后，第一个activity才OnStop,但是在第二个activity的Oncreate之前就执行了OnPause。也就是说只有在第二个activity完全起来之后才调用第一个activity的OnStop  1.2 PauseActivity不完全">
+<meta property="og:image" content="http://img.blog.csdn.net/20140109113924656?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20140109113942625?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20140109113837046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20140109113857734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2016-11-17T15:21:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="i71面试总结">
+<meta name="twitter:description" content="1.Activity跳转生命周期1.1 OtherActivity完全覆盖MainActivity可以发现在第二个activity的OnResume之后，第一个activity才OnStop,但是在第二个activity的Oncreate之前就执行了OnPause。也就是说只有在第二个activity完全起来之后才调用第一个activity的OnStop  1.2 PauseActivity不完全">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20140109113924656?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+  
+  
+    <link rel="icon" href="/img/mylogo.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/mylogo.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">申建利</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/shenjianli" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Fresco/" style="font-size: 20px;">Fresco</a> <a href="/tags/Glide/" style="font-size: 10px;">Glide</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Picasso/" style="font-size: 10px;">Picasso</a> <a href="/tags/ShenLib/" style="font-size: 10px;">ShenLib</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/picasso/" style="font-size: 10px;">picasso</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/分析/" style="font-size: 10px;">分析</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是一名Android开发人员，欢迎各位光临各位访问指导！</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">申建利</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/mylogo.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">申建利</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/shenjianli" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-i71" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/11/14/i71/" class="article-date">
+  	<time datetime="2016-11-14T13:47:04.000Z" itemprop="datePublished">2016-11-14</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      i71面试总结
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/面试/">面试</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Activity跳转生命周期"><a href="#1-Activity跳转生命周期" class="headerlink" title="1.Activity跳转生命周期"></a>1.Activity跳转生命周期</h2><p>1.1 OtherActivity完全覆盖MainActivity<br>可以发现在第二个activity的OnResume之后，第一个activity才OnStop,但是在第二个activity的Oncreate之前就执行了OnPause。也就是说只有在第二个activity完全起来之后才调用第一个activity的OnStop<br><img src="http://img.blog.csdn.net/20140109113924656?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="新启动"></p>
+<p><img src="http://img.blog.csdn.net/20140109113942625?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="返回"></p>
+<p>1.2 PauseActivity不完全覆盖MainActivity<br>这里只调了第一个activity的OnPause，而没有调用OnStop<br><img src="http://img.blog.csdn.net/20140109113837046?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="新启动"><br><img src="http://img.blog.csdn.net/20140109113857734?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveXV4bWRlZjE=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="返回"><br><a href="http://blog.csdn.net/yuxmdef1/article/details/18036787" target="_blank" rel="external">http://blog.csdn.net/yuxmdef1/article/details/18036787</a><br><a href="http://blog.csdn.net/android_tutor/article/details/5772285" target="_blank" rel="external">http://blog.csdn.net/android_tutor/article/details/5772285</a></p>
+<h2 id="2-内部类"><a href="#2-内部类" class="headerlink" title="2.内部类"></a>2.内部类</h2><p>内部类的实例化<br>如果内部类未声明为static，在实例化时首先需要new一个外部类的对象。并通过p.new Inner()的方式new 内部类，表明这个内部类指向该外部类。内部类的class类型为：Parent.Inner，而不是p.Inner，这个需要和new的方式区分开。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"> public static void main(String[] args) &#123;</div><div class="line">  Parent p = new Parent();</div><div class="line">  Parent.Inner i = p.new Inner();</div><div class="line">  i.print();</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">class Parent &#123;</div><div class="line"> class Inner &#123;</div><div class="line">  public void print() &#123;</div><div class="line">   System.out.println(&quot;xxx&quot;);</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>静态内部类的实例化<br>静态内部类与普通内部类的区别在于，静态内部类的对象是不指向与某个具体的外部类对象，所以在创建对象时不需要创建外部类对象。并且在new的时候是通过 new Parent.Inner()方式，而不是Parent.new Inner()。不要和内部类的实例化搞混了。class的声明和内部类是一样的，都是Parent.Inner<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"> public static void main(String[] args) &#123;</div><div class="line">  Parent.Inner i = new Parent.Inner();</div><div class="line">  i.print();</div><div class="line"> &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">class Parent &#123;</div><div class="line"> staticclass Inner &#123;</div><div class="line">  public void print() &#123;</div><div class="line">   System.out.println(&quot;xxx&quot;);</div><div class="line">  &#125;</div><div class="line"> &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><a href="http://blog.csdn.net/playstudy/article/details/31777389" target="_blank" rel="external">http://blog.csdn.net/playstudy/article/details/31777389</a></p>
+<h2 id="3-URLCache"><a href="#3-URLCache" class="headerlink" title="3.URLCache"></a>3.URLCache</h2><p> 目前很多商业应用都会涉及到从网络上读取图片数据的问题，为了节约用户流量，应用一般会将图片缓存起来。图片缓存一般分为内存缓存和外存缓存。内存缓存运用java的缓存机制，在程序完全退出后，缓存所在的内存空间可能被其它应用程序占用从而丢失。外存缓存一般放在程序特有的访问空间或者sd卡中，在sd卡中存放的资源为公有资源，其它程序也可以访问，且对用户来讲没有一个强制清除缓存的规范机制。综合以上，本文采用将缓存图片放置在程序的特有空间中， 其它应用程序无法访问，且用户可以在应用程序管理中的”清除数据”选项中清除缓存。<br>      本文提供三种缓存策略：（1）LRU算法，固定缓存图片数量(max_num)，当图片数量超出max_num时，将缓存中最近用的最少的图片删除。（2）FTU算法，固定每张图片的缓存时限，以最后一次使用算起，超过时限后删除。（3）FMU算法，在存储器中固定一定大小的存储空间，超过固定空间后将缓存中占用最大尺寸的图片删除。使用时只需要向方法体中传递图片的URL即可。<br><a href="http://www.android100.org/html/201602/14/215263.html" target="_blank" rel="external">http://www.android100.org/html/201602/14/215263.html</a></p>
+<h2 id="4-IntentService"><a href="#4-IntentService" class="headerlink" title="4.IntentService"></a>4.IntentService</h2><p>在Android开发中，我们或许会碰到这么一种业务需求，一项任务分成几个子任务，子任务按顺序先后执行，子任务全部执行完后，这项任务才算成功。那么，利用几个子线程顺序执行是可以达到这个目的的，但是每个线程必须去手动控制，而且得在一个子线程执行完后，再开启另一个子线程。或者，全部放到一个线程中让其顺序执行。这样都可以做到，但是，如果这是一个后台任务，就得放到Service里面，由于Service和Activity是同级的，所以，要执行耗时任务，就得在Service里面开子线程来执行。那么，有没有一种简单的方法来处理这个过程呢，答案就是IntentService。</p>
+<p>什么是IntentService，首先看看官方的解释：</p>
+<p>IntentService is a base class forServices that handle asynchronous requests (expressed asIntents) on demand. Clients send requests throughstartService(Intent) calls; the service is started as needed, handles each Intent in turn using a worker thread, and stops itself when it runs out of work</p>
+<p>简单说，IntentService是继承于Service并处理异步请求的一个类，在IntentService内有一个工作线程来处理耗时操作，启动IntentService的方式和启动传统Service一样，同时，当任务执行完后，IntentService会自动停止，而不需要我们去手动控制。另外，可以启动IntentService多次，而每一个耗时操作会以工作队列的方式在IntentService的onHandleIntent回调方法中执行，并且，每次只会执行一个工作线程，执行完第一个再执行第二个，以此类推。<br>还有一个说明是：</p>
+<p>All requests are handled on a single worker thread – they may take as long as necessary (and will not block the application’s main loop), but only one request will be processed at a time.<br>大致意思是：所有请求都在一个单线程中，不会阻塞应用程序的主线程（UI Thread），同一时间只处理一个请求。<br>那么，用IntentService有什么好处呢？首先，我们省去了在Service中手动开线程的麻烦，第二，当操作完成时，我们不用手动停止Service，第三，it’s so easy to use！</p>
+<p>ok，接下来让我们来看看如何使用，我写了一个Demo来模拟两个耗时操作，Operation1与Operation2，先执行1，2必须等1执行完才能执行：<br><a href="http://laokaddk.blog.51cto.com/368606/1340540/" target="_blank" rel="external">http://laokaddk.blog.51cto.com/368606/1340540/</a><br><a href="http://www.cnblogs.com/zhangs1986/p/3602154.html" target="_blank" rel="external">http://www.cnblogs.com/zhangs1986/p/3602154.html</a></p>
+<h2 id="5-AsyncTask"><a href="#5-AsyncTask" class="headerlink" title="5.AsyncTask"></a>5.AsyncTask</h2><p>在实际应用中经常会遇到比较耗时任务的处理，比如网络连接，数据库操作等情况时，如果这些操作都是放在主线程（UI线程）中，则会造成UI的假死现象，<strong>Android中可以使用AsyncTask和Handler两种异步方式来解决这种问题。</strong><br>AsyncTask:<br>android提供的轻量级的异步类,可以直接继承AsyncTask,在类中实现异步操作,并提供接口反馈当前异步执行的程度(可以通过接口实现UI进度更新),最后反馈执行的结果给UI主线程.</p>
+<p><strong>使用的优点:</strong><br>简单,快捷,过程可控<br><strong>使用的缺点:</strong><br>在使用多个异步操作和并需要进行Ui变更时,就变得复杂起来.<br>在使用AsyncTask时处理类需要继承AsyncTask，提供三个泛型参数，并且重载AsyncTask的四个方法（至少重载一个）。<br>在Android 4.1版本之前，AsyncTask类必须在主线程中加载，这意味着对AsyncTask类的第一次访问必须发生在主线程中；在Android 4.1以及以上版本则不存在这一限制，因为ActivityThread（代表了主线程）的main方法中会自动加载AsyncTask<br>AsyncTask对象必须在主线程中创建<br>AsyncTask对象的execute方法必须在主线程中调用<br>一个AsyncTask对象只能调用一次execute方法</p>
+<p>三个泛型参数：<br>1.Param 任务执行器需要的数据类型<br>2.Progress 后台计算中使用的进度单位数据类型<br>3.Result 后台计算返回结果的数据类型<br>在设置参数时通常是这样的：String… params，这表示方法可以有0个或多个此类型参数；有时参数可以设置为不使用，用Void…即可。<br>四个方法：<br>1.onPreExecute() 执行预处理，它运行于UI线程，可以为后台任务做一些准备工作，比如绘制一个进度条控件。<br>2.doInBackground(Params…) 后台进程执行的具体计算在这里实现，doInBackground(Params…)是AsyncTask的关键，此方法必须重载。在这个方法内可以使用publishProgress(Progress…)改变当前的进度值。<br>3.onProgressUpdate(Progress…) 运行于UI线程。如果在doInBackground(Params…) 中使用了publishProgress(Progress…)，就会触发这个方法。在这里可以对进度条控件根据进度值做出具体的响应。<br>4.onPostExecute(Result) 运行于UI线程，可以对后台任务的结果做出处理，结果就是doInBackground(Params…)的返回值。此方法也要经常重载，如果Result为null表明后台任务没有完成(被取消或者出现异常)。</p>
+<p><strong>Handler:</strong><br>Handler可以分发Message对象和Runnable对象到主线程中, 每个Handler实例,都会绑定到创建他的线程中（一般是位于主线程中）<br>两个作用：<br>安排消息或Runnable 在某个主线程中某个地方执行<br>安排一个动作在不同的线程中执行<br>Handler中分发消息的方法：<br>post(Runnable)<br>postAtTime(Runnable,long)<br>postDelayed(Runnable,long)<br>sendEmptyMessage(int)<br>sendMessage(Message)<br>sendMessageAtTime(Message,long)<br>sendMessageDelayed(Message,long)<br><em>以上post开头的方法在主线程中调用。
+</em>以上send开头的方法在其它线程中调用。<br>handler.post(thread)似乎实现了新启线程的作用，不过通过执行我们发现，两个线程的ID相同！也就是说，实际上thread还是原来 的主线程，由此可见，handler.post()方法并未真正新建线程，只是在原线程上执行而已，我们并未实现异步机制。</p>
+<p><a href="http://blog.csdn.net/wuxinzaiyu/article/details/8954841" target="_blank" rel="external">http://blog.csdn.net/wuxinzaiyu/article/details/8954841</a><br><a href="http://blog.csdn.net/zj510/article/details/51485120" target="_blank" rel="external">http://blog.csdn.net/zj510/article/details/51485120</a></p>
+<h2 id="Q-Android实现异步的几种方式？"><a href="#Q-Android实现异步的几种方式？" class="headerlink" title="Q:Android实现异步的几种方式？"></a>Q:Android实现异步的几种方式？</h2><h3 id="1-使用Thread-Handler消息传递机制；"><a href="#1-使用Thread-Handler消息传递机制；" class="headerlink" title="1.使用Thread + Handler消息传递机制；"></a>1.使用Thread + Handler消息传递机制；</h3><h3 id="2-使用AsyncTask异步任务；"><a href="#2-使用AsyncTask异步任务；" class="headerlink" title="2.使用AsyncTask异步任务；"></a>2.使用AsyncTask异步任务；</h3><p>AsyncTask抽象出后台线程运行的五个状态，分别是：1、准备运行，2、正在后台运行，3、进度更新，4、完成后台任务，5、取消任务，对于这五个阶段，AsyncTask提供了五个回调函数：</p>
+<p>1、准备运行：onPreExecute(),该回调函数在任务被执行之后立即由UI线程调用。这个步骤通常用来建立任务，在用户接口（UI）上显示进度条。</p>
+<p>2、正在后台运行：doInBackground(Params…),该回调函数由后台线程在onPreExecute()方法执行结束后立即调用。通常在这里执行耗时的后台计算。计算的结果必须由该函数返回，并被传递到onPostExecute()中。在该函数内也可以使用publishProgress(Progress…)来发布一个或多个进度单位(unitsof progress)。这些值将会在onProgressUpdate(Progress…)中被发布到UI线程。</p>
+<ol>
+<li><p>进度更新：onProgressUpdate(Progress…),该函数由UI线程在publishProgress(Progress…)方法调用完后被调用。一般用于动态地显示一个进度条。</p>
+</li>
+<li><p>完成后台任务：onPostExecute(Result),当后台计算结束后调用。后台计算的结果会被作为参数传递给这一函数。</p>
+</li>
+</ol>
+<p>5、取消任务：onCancelled ()，在调用AsyncTask的cancel()方法时调用 </p>
+<h3 id="3-使用runOnUiThread-action-方法；"><a href="#3-使用runOnUiThread-action-方法；" class="headerlink" title="3.使用runOnUiThread(action)方法；"></a>3.使用runOnUiThread(action)方法；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">runOnUiThread(new Runnable() &#123; </div><div class="line">    @Override </div><div class="line">    public void run() &#123; </div><div class="line">     // TODO Auto-generated method stub </div><div class="line">      try &#123; </div><div class="line">       //延迟两秒更新 </div><div class="line">       Thread.sleep(2000); </div><div class="line">      &#125; catch (InterruptedException e) &#123; </div><div class="line">       e.printStackTrace(); </div><div class="line">      &#125; </div><div class="line">      tv.setText(&quot;更新后的TextView&quot;); </div><div class="line">    &#125; </div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<h3 id="4-使用Handler的post-Runnabel-r-方法；"><a href="#4-使用Handler的post-Runnabel-r-方法；" class="headerlink" title="4.使用Handler的post(Runnabel r)方法；"></a>4.使用Handler的post(Runnabel r)方法；</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Handler handler = new Handler(); </div><div class="line">  handler.post(new Runnable()&#123; </div><div class="line">   @Override </div><div class="line">   public void run() &#123; </div><div class="line">    try &#123; </div><div class="line">     //延迟两秒更新 </div><div class="line">     Thread.sleep(2000); </div><div class="line">    &#125; catch (InterruptedException e) &#123; </div><div class="line">     e.printStackTrace(); </div><div class="line">    &#125; </div><div class="line">    tv.setText(&quot;更新后的TextView&quot;); </div><div class="line">   &#125; </div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<h3 id="5-RxJava"><a href="#5-RxJava" class="headerlink" title="5.RxJava"></a>5.RxJava</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Observable.just(&quot;&quot;)</div><div class="line">     .map(new Func1&lt;String, Bitmap&gt;() &#123;</div><div class="line">     	@Override</div><div class="line">     	public Bitmap call(String s) &#123;</div><div class="line">        //可以在这里执行耗时操作,比如下载网络图片,然后转化为Bitmap</div><div class="line">          return null;</div><div class="line">         &#125;</div><div class="line">         &#125;).subscribeOn(Schedulers.io())//把工作线程指定为了IO线程</div><div class="line">         .observeOn(AndroidSchedulers.mainThread())//把回调线程指定为了UI线程</div><div class="line">         .subscribe(new Action1&lt;Bitmap&gt;() &#123;</div><div class="line">             @Override</div><div class="line">             public void call(Bitmap bitmap) &#123;</div><div class="line">                 //这里是在UI线程,这里显示了图片</div><div class="line">                 mImageView.setImageBitmap(bitmap);</div><div class="line">             &#125;</div><div class="line">     &#125;);</div></pre></td></tr></table></figure>
+<h2 id="Q-java-class默认的权限？"><a href="#Q-java-class默认的权限？" class="headerlink" title="Q.java class默认的权限？"></a>Q.java class默认的权限？</h2><p>java中修饰类总共有四种关键字，不是只有public和defalult关键字。如下：<br>1、public：public表明该数据成员、成员函数是对所有用户开放的，所有用户都可以直接进行调用<br>2、private：private表示私有，私有的意思就是除了class自己之外，任何人都不可以直接使用，私有财产神圣不可侵犯嘛，即便是子女，朋友，都不可以使用。<br>3、protected：protected对于子女、朋友来说，就是public的，可以自由使用，没有任何限制，而对于其他的外部class，protected就变成private。<br>4、default：java的默认访问权限，当没有使用上面提到的任何访问限定词时，就使用它，这种权限通常被称为包访问权限，在这种权限下，类可以访问在同一个包中的其他类的成员，也即可以访问我们前面说的朋友，在包之外，这些成员如同指定了private。</p>
+<h2 id="java内部类"><a href="#java内部类" class="headerlink" title="java内部类"></a>java内部类</h2><p>内部类就是在一个类的内部定义的类，内部类中不能定义静态成员；内部类可以直接访问外部类中的成员变量，内部类可以定义在外部类的方法外面，也可以定义在外部类的方法体中；在方法体外面定义的内部类的访问类型可以是public,protecte,默认的，private等4种类型，这就好像类中定义的成员变量有4种访问类型一样，它们决定这个内部类的定义对其他类是否可见；对于这种情况，我们也可以在外面创建内部类的实例对象，创建内部类的实例对象时，一定要先创建外部类的实例对象，然后用这个外部类的实例对象去创建内部类的实例对象，代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Outer outer = new Outer();  </div><div class="line">Outer.Inner1 inner1 = outer.new Innner1();</div></pre></td></tr></table></figure></p>
+<p>在方法内部定义的内部类前面不能有访问类型修饰符，就好像方法中定义的局部变量一样，但这种内部类的前面可以使用final或abstract修饰符。这种内部类对其他类是不可见的其他类无法引用这种内部类，但是这种内部类创建的实例对象可以传递给其他类访问。这种内部类必须是先定义，后使用，即内部类的定义代码必须出现在使用该类之前，这与方法中的局部变量必须先定义后使用的道理也是一样的。这种内部类可以访问方法体中的局部变量，但是，该局部变量前必须加final修饰符。</p>
+<p>普通类只能定义成public和默认的这两种类型。在外面引用Static Nested Class类的名称为“外部类名.内部类名”。在外面不需要创建外部类的实例对象，就可以直接创建Static Nested Class，例如，假设Inner是定义在Outer类中的Static Nested Class，那么可以使用如下语句创建Inner类：<br>Outer.Inner inner = new Outer.Inner();</p>
+<p>由于static Nested Class不依赖于外部类的实例对象，所以，static Nested Class能访问外部类的非static成员变量。当在外部类中访问Static Nested Class时，可以直接使用Static Nested Class的名字，而不需要加上外部类的名字了，在Static Nested Class中也可以直接引用外部类的static的成员变量，不需要加上外部类的名字。<br>在静态方法中定义的内部类也是Static Nested Class，这时候不能在类前面加static关键字，静态方法中的Static Nested Class与普通方法中的内部类的应用方式很相似，它除了可以直接访问外部类中的static的成员变量，还可以访问静态方法中的局部变量，但是，该局部变量前必须加final修饰符。</p>
+<p>1、内部类的形式是怎样的？<br>⒈静态内部类<br>不可以访问外部类的普通成员变量，而只能访问外部类中的静态成员<br>⒉成员内部类<br>内部类可以引用它的包含类的成员吗，成员内部类不能含有static的变量和方法。因为成员内部类需要先创建了外部类，才能创建它自己的，<br>⒊局部内部类<br>⒋匿名内部类<br>可以继承其他类或实现其他接口</p>
+<p>2、为什么要有“内部类”？<br>1、内部类提供了更好的封装。只能让外部类直接访问，不允许同一个包中的其他类直接访问。<br>2、内部类可以直接访问外部类的私有属性，内部类被当成其外部类成员。但外部类不能访问内部类的内部属性。<br>3、利用内部类可以方便实现哪些功能？<br>可以不受限制的访问外部类的域和方法。<br>4、内部类的实现机制？</p>
+<p>5、内部类可以引用它的包含类（外部类）的成员吗？有没有什么限制？</p>
+<p>可以，限制，如果是静态内部类，不能访问外部类的非静态成员。</p>
+<p><a href="http://www.cnblogs.com/dolphin0520/p/3811445.html" target="_blank" rel="external">内部类</a></p>
+<p><a href="http://android.blog.51cto.com/268543/384844/" target="_blank" rel="external">内部类2</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/11/16/ThinkInJava/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ThinkInJava
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/08/Picasso_Source/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Picasso请求图片源码分析</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="i71" data-title="i71面试总结" data-url="http://yoursite.com/2016/11/14/i71/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 申建利
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

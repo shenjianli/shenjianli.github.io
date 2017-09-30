@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Glide使用实例 | 撑起头顶的天</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Glide图片加载库的使用实例在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年google I/O大会上发布的官方app。 Glide Github 地址：https://github.com/shenjianli/glide Glide效果图： 其中代码结构和Picasso的使用">
+<meta name="keywords" content="Glide">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Glide使用实例">
+<meta property="og:url" content="http://yoursite.com/2016/06/06/glide-example/index.html">
+<meta property="og:site_name" content="撑起头顶的天">
+<meta property="og:description" content="Glide图片加载库的使用实例在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年google I/O大会上发布的官方app。 Glide Github 地址：https://github.com/shenjianli/glide Glide效果图： 其中代码结构和Picasso的使用">
+<meta property="og:image" content="http://yoursite.com/image/glide_test.png">
+<meta property="og:image" content="http://yoursite.com/image/overall-design-glide.jpg">
+<meta property="og:updated_time" content="2016-06-09T14:01:26.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Glide使用实例">
+<meta name="twitter:description" content="Glide图片加载库的使用实例在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年google I/O大会上发布的官方app。 Glide Github 地址：https://github.com/shenjianli/glide Glide效果图： 其中代码结构和Picasso的使用">
+<meta name="twitter:image" content="http://yoursite.com/image/glide_test.png">
+  
+  
+    <link rel="icon" href="/img/mylogo.png">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/img/mylogo.png" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">申建利</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>Menu</li>
+						<li>Tags</li>
+						
+						<li>Links</li>
+						
+						
+						<li>Über</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/shenjianli" title="github">github</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/ES6/" style="font-size: 10px;">ES6</a> <a href="/tags/Fresco/" style="font-size: 20px;">Fresco</a> <a href="/tags/Glide/" style="font-size: 10px;">Glide</a> <a href="/tags/Gradle/" style="font-size: 10px;">Gradle</a> <a href="/tags/Picasso/" style="font-size: 10px;">Picasso</a> <a href="/tags/ShenLib/" style="font-size: 10px;">ShenLib</a> <a href="/tags/cache/" style="font-size: 10px;">cache</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/picasso/" style="font-size: 10px;">picasso</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/分析/" style="font-size: 10px;">分析</a> <a href="/tags/面试/" style="font-size: 20px;">面试</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是一名Android开发人员，欢迎各位光临各位访问指导！</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">申建利</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/img/mylogo.png" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">申建利</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/shenjianli" title="github">github</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-glide-example" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/06/glide-example/" class="article-date">
+  	<time datetime="2016-06-06T02:53:03.000Z" itemprop="datePublished">2016-06-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Glide使用实例
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Glide/">Glide</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Glide图片加载库的使用实例"><a href="#Glide图片加载库的使用实例" class="headerlink" title="Glide图片加载库的使用实例"></a>Glide图片加载库的使用实例</h2><p>在泰国举行的谷歌开发者论坛上，谷歌为我们介绍了一个名叫 Glide 的图片加载库，作者是bumptech。这个库被广泛的运用在google的开源项目中，包括2014年google I/O大会上发布的官方app。</p>
+<p>Glide Github 地址：<br><a href="https://github.com/shenjianli/glide" target="_blank" rel="external">https://github.com/shenjianli/glide</a></p>
+<p>Glide效果图：<br><img src="/image/glide_test.png" alt="glide"></p>
+<p>其中代码结构和Picasso的使用实例十分相似，具体的代码逻辑与结构请参考<a href="http://shenjianli.github.io/2016/05/27/Picasso-Text-Example/" target="_blank" rel="external">Picasso使用实例</a></p>
+<p>全面学习Glide可移步—&gt;<a href="http://mrfu.me/2016/02/27/Glide_Getting_Started/" target="_blank" rel="external">http://mrfu.me/2016/02/27/Glide_Getting_Started/</a></p>
+<h2 id="总体设计及流程"><a href="#总体设计及流程" class="headerlink" title="总体设计及流程"></a>总体设计及流程</h2><p><img src="/image/overall-design-glide.jpg" alt="whole design"><br>上面是 Glide 的总体设计图。整个库分为 RequestManager(请求管理器)，Engine(数据获取引擎)、 Fetcher(数据获取器)、MemoryCache(内存缓存)、DiskLRUCache、Transformation(图片处理)、Encoder(本地缓存存储)、Registry(图片类型及解析器配置)、Target(目标) 等模块。</p>
+<p>简单的讲就是 Glide 收到加载及显示资源的任务，创建 Request 并将它交给RequestManager，Request 启动 Engine 去数据源获取资源(通过 Fetcher )，获取到后 Transformation 处理后交给 Target。</p>
+<p>Glide 依赖于 DiskLRUCache、GifDecoder 等开源库去完成本地缓存和 Gif 图片解码工作。</p>
+<h2 id="Glide-优点"><a href="#Glide-优点" class="headerlink" title="Glide 优点"></a>Glide 优点</h2><p>(1) 图片缓存-&gt;媒体缓存<br>Glide 不仅是一个图片缓存，它支持 Gif、WebP、缩略图。甚至是 Video，所以更该当做一个媒体缓存。<br>(2) 支持优先级处理<br>(3) 与 Activity/Fragment 生命周期一致，支持 trimMemory<br>Glide 对每个 context 都保持一个 RequestManager，通过 FragmentTransaction 保持与 Activity/Fragment 生命周期一致，并且有对应的 trimMemory 接口实现可供调用。<br>(4) 支持 okhttp、Volley<br>Glide 默认通过 UrlConnection 获取数据，可以配合 okhttp 或是 Volley 使用。实际 ImageLoader、Picasso 也都支持 okhttp、Volley。<br>(5) 内存友好<br>① Glide 的内存缓存有个 active 的设计<br>从内存缓存中取数据时，不像一般的实现用 get，而是用 remove，再将这个缓存数据放到一个 value 为软引用的 activeResources map 中，并计数引用数，在图片加载完成后进行判断，如果引用计数为空则回收掉。<br>② 内存缓存更小图片<br>Glide 以 url、view_width、view_height、屏幕的分辨率等做为联合 key，将处理后的图片缓存在内存缓存中，而不是原始图片以节省大小<br>③ 与 Activity/Fragment 生命周期一致，支持 trimMemory<br>④ 图片默认使用默认 RGB_565 而不是 ARGB_888<br>虽然清晰度差些，但图片更小，也可配置到 ARGB_888。<br>其他：Glide 可以通过 signature 或不使用本地缓存支持 url 过期</p>
+<h3 id="下面来说明一下存在的问题："><a href="#下面来说明一下存在的问题：" class="headerlink" title="下面来说明一下存在的问题："></a>下面来说明一下存在的问题：</h3><p>1.有的图片第一次加载的时候只显示占位图，第二次才显示正常的图片呢<br>如果你刚好使用了这个圆形Imageview库或者其他的一些自定义的圆形Imageview，而你又刚好设置了占位的话，那么，你就会遇到第一个问题。如何解决呢？<br>方案一: 不设置占位；<br>方案二：使用Glide的Transformation API自定义圆形Bitmap的转换。这里是一个已有的例子；<br>方案三：使用下面的代码加载图片：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">Glide.with(mContext)</div><div class="line">    .load(url) </div><div class="line">    .placeholder(R.drawable.loading_spinner)</div><div class="line">    .into(new SimpleTarget&lt;Bitmap&gt;(width, height) &#123;</div><div class="line">        @Override </div><div class="line">        public void onResourceReady(Bitmap bitmap, GlideAnimation anim) &#123;</div><div class="line">            // setImageBitmap(bitmap) on CircleImageView </div><div class="line">        &#125; </div><div class="line">    &#125;;</div></pre></td></tr></table></figure></p>
+<p>2.我总会得到类似You cannot start a load for a destroyed activity这样的异常呢<br>请记住一句话：不要再非主线程里面使用Glide加载图片，如果真的使用了，请把context参数换成getApplicationContext。</p>
+<p>3.我不能给加载的图片setTag()呢<br>是因为你使用的姿势不对哦。如何为ImageView设置Tag呢？且听我细细道来。<br>方案一：使用setTag(int,object)方法设置tag,具体用法如下：<br>Java代码是酱紫的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Glide.with(context).load(urls.get(i).getUrl()).fitCenter().into(imageViewHolder.image);</div><div class="line">        imageViewHolder.image.setTag(R.id.image_tag, i);</div><div class="line">        imageViewHolder.image.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">                int position = (int) v.getTag(R.id.image_tag);</div><div class="line">                Toast.makeText(context, urls.get(position).getWho(), Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+<p>同时在values文件夹下新建ids.xml，添加</p>
+<p><item name="image_tag" type="id"><br>大功告成!<br>方案二：从Glide的3.6.0之后，新添加了全局设置的方法。具体方法如下：<br>先实现GlideMoudle接口，全局设置ViewTaget的tagId:<br>public class MyGlideMoudle implements GlideModule{<br>    @Override<br>    public void applyOptions(Context context, GlideBuilder builder) {<br>        ViewTarget.setTagId(R.id.glide_tag_id);<br>    }</item></p>
+<pre><code>@Override
+public void registerComponents(Context context, Glide glide) {
+
+}
+</code></pre><p>}<br>同样，也需要在ids.xml下添加id</p>
+<p><item name="glide_tag_id" type="id"><br>最后在AndroidManifest.xml文件里面添加</item></p>
+<p><meta-data android:name="com.yourpackagename.MyGlideMoudle" android:value="GlideModule"><br>又可以愉快的玩耍了，嘻嘻`(∩_∩)′。<br>方案三：写一个继承自ImageViewTaget的类，复写它的get/setRequest方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">Glide.with(context).load(urls.get(i).getUrl()).fitCenter().into(new ImageViewTarget&lt;GlideDrawable&gt;(imageViewHolder.image) &#123;</div><div class="line">            @Override</div><div class="line">            protected void setResource(GlideDrawable resource) &#123;</div><div class="line">                imageViewHolder.image.setImageDrawable(resource);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public void setRequest(Request request) &#123;</div><div class="line">                imageViewHolder.image.setTag(i);</div><div class="line">                imageViewHolder.image.setTag(R.id.glide_tag_id,request);</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            @Override</div><div class="line">            public Request getRequest() &#123;</div><div class="line">                return (Request) imageViewHolder.image.getTag(R.id.glide_tag_id);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line"></div><div class="line">        imageViewHolder.image.setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onClick(View v) &#123;</div><div class="line">                int position = (int) v.getTag();</div><div class="line">                Toast.makeText(context, urls.get(position).getWho(), Toast.LENGTH_SHORT).show();</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></meta-data></p>
+<h2 id="Glide使用技巧"><a href="#Glide使用技巧" class="headerlink" title="Glide使用技巧"></a>Glide使用技巧</h2><p>1.Glide.with(context).resumeRequests()和 Glide.with(context).pauseRequests()<br>当列表在滑动的时候，调用pauseRequests()取消请求，滑动停止时，调用resumeRequests()恢复请求。这样是不是会好些呢？<br>2.Glide.clear()<br>当你想清除掉所有的图片加载请求时，这个方法可以帮助到你。<br>3.ListPreloader<br>如果你想让列表预加载的话，不妨试一下ListPreloader这个类。</p>
+<h2 id="一些基于Glide的库"><a href="#一些基于Glide的库" class="headerlink" title="一些基于Glide的库"></a>一些基于Glide的库</h2><p>1.glide-transformations（<a href="https://github.com/wasabeef/glide-transformations" target="_blank" rel="external">https://github.com/wasabeef/glide-transformations</a>）<br>一个基于Glide的transformation库，拥有裁剪，着色，模糊，滤镜等多种转换效果，赞的不行不行的~~<br>2.GlidePalette <a href="https://github.com/florent37/GlidePalette" target="_blank" rel="external">https://github.com/florent37/GlidePalette</a><br>一个可以在Glide加载时很方便使用Palette的库。</p>
+<h2 id="源码下载"><a href="#源码下载" class="headerlink" title="源码下载"></a>源码下载</h2><p><a href="https://github.com/shenjianli/GlideTest" target="_blank" rel="external">Glide源码</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/07/jing-dong-example/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          京东客户端分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/03/es6-promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6 Promise</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">Share to: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="glide-example" data-title="Glide使用实例" data-url="http://yoursite.com/2016/06/06/glide-example/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"true"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2017 申建利
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
