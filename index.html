@@ -169,59 +169,6 @@
 
       <div class="body-wrap">
   
-    <article id="post-test" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/09/30/test/" class="article-date">
-  	<time datetime="2017-09-30T15:57:03.000Z" itemprop="datePublished">2017-09-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/30/test/">test.md </a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>test</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-publish_lib_introduce" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -926,6 +873,83 @@
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/test/">test</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-jing-dong-example" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/07/jing-dong-example/" class="article-date">
+  	<time datetime="2016-06-07T06:23:57.000Z" itemprop="datePublished">2016-06-07</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/07/jing-dong-example/">京东客户端分析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="统计"><a href="#统计" class="headerlink" title="统计"></a>统计</h2><p>京东：（用时单位：秒）<br>经过多次打开京东客户端，并进行网络请求拦截后，发现京东首页的主要数据请求有：</p>
+<p>1.首页数据请求（/client.action?/functionId=welcomeHome）：<br>用时：1.902秒</p>
+<p>2.首页搜索框json数据请求（/client.action?functionId=searchBoxWord）<br>用时：0.104秒</p>
+<p>3.首页缓存Json请求（/client.action?functionId=getCacheTime）<br>用时：0.134秒</p>
+<p>##购：（用时单位：秒）</p>
+<p>##购首页主要数据请求有：</p>
+<p>1.轮播图（/mobile/indexSlide.jhtml）<br>用时：0.971</p>
+<p>2.快速入口（/mobile/indexPlatformNew.jhtml?flag=1）<br>用时：0.982</p>
+<p>3.秒杀（/mobile/indexSeckill.jhtml）<br>用时：0.744</p>
+<p>4.专题（/mobile/indexTheme.jhtml）<br>用时：1.021</p>
+<p>5.行业精选（/mobile/indexIndustry.jhtml）<br>用时：1.025</p>
+<p>6.热卖商品（/mobile/indexChoicenessNew.jhtml?indexpage=1）<br>用时：0.105</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>京东的这些请求是在一打开客户端时，就开始并行发送首页的数据请求，大多数情况下，在进入首页时，数据都请求完成了，这样就可以直接使用数据进行界面初始化，而不需要等待网络数据请求，因此首页加载较快！</p>
+<p>京东请求中最长用时1.902秒，请求下来的数据长度为<br>text/plain: 20,756<br>~headers~: 276</p>
+<p>对于<strong>购，上面这些数据都是在进入首页界面后，才开始上面的数据请求，需要等到网络数据请求下来才能初始化界面，因此相比于京东加载会慢些。
+</strong>购数据请求最长为1.025秒，请求下来的数据长度为<br>text/x-json: 912<br>~headers~: 557</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>综合上述，可知<br>京东相对于##购有以下优点：<br>1.发送首页数据请求的时机在客户端一启动时，便开始数据请求并进行缓存，而##购则是进行首页后才开始网络数据请求<br>2.首页网络数据请求个数较少，这样可以节省发起网络请求时所需要的不可避免的耗时<br>3.京东最长用时的请求效率高于##购（京东：（20757+276）/1.903  ##购：（912+557）/1.025）</p>
+<p>从客户端来看，##购首页加载比京东慢的主要原因是由上面第1点导致，为了提高首页的加载速度，可以仿京东的实现方面，在客户端一打开时就进行首页网络数据的请求<br>为首页的初始化进行数据的预加载，从而实现更快的响应速度！</p>
+<h2 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h2><p>1.问题：首页占位样式较难看<br>分析：界面样式及图片设计粗糙<br>解决方法：进行界面占位样式的设计及提供高质量的UI图片</p>
+<p>2.问题：首页数据加载慢<br>分析：网络请求时机较迟没有进行预加载<br>解决方法：仿京东的实现方面，在客户端一打开时就进行首页网络数据的请求，为首页的初始化进行数据的预加载，从而实现更快的响应速度！</p>
+<h2 id="附网络截图："><a href="#附网络截图：" class="headerlink" title="附网络截图："></a>附网络截图：</h2><p>1.京东缓存请求用时图：<br><img src="/image/jd_cache_time.jpg" alt="京东缓存"><br>2.京东首页数据请求用时图:<br><img src="/image/jd_home_time.jpg" alt="京东首页数据请求用时图"><br>3.京东搜索框文字请求用时图：<br><img src="/image/jd_searchword_time.jpg" alt="京东搜索框文字请求用时图"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/分析/">分析</a></li></ul>
 	</div>
 
       
